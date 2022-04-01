@@ -1,0 +1,21 @@
+<form class="" [formGroup]="formGroup" (ngSubmit)="onFormSubmit()" ngNativeValidate>
+    <mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center">
+        <a [routerLink]="'/search'" class=" logo" fxFlex="20" fxLayoutAlign="center center"></a>
+        <div fxFlex="60" fxLayoutAlign="center center">
+            <mat-form-field appearance="fill">
+                <mat-label>Select coutry</mat-label>
+                <mat-select [formControl]="countryCode" required (selectionChange)="onFormSubmit()">
+                    <mat-option *ngFor="let country of countryCodesSouthAmerica" [value]="country.code">
+                        {{country.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="countryCode.hasError('required')">Please choose a country</mat-error>
+                <mat-hint>{{countryCode.value?.code}}</mat-hint>
+            </mat-form-field>
+        </div>
+        <div fxFlex="20" fxLayoutAlign="ritgh center">
+            Weather App!!
+        </div>
+    </mat-toolbar>
+
+</form>

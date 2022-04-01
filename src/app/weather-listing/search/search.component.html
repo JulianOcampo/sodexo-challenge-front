@@ -1,0 +1,51 @@
+<div class="main-container">
+    <mat-progress-bar mode="query" *ngIf="!weather.shortName && processing"></mat-progress-bar>
+
+    <div class="" fxLayout="row wrap" fxLayoutAlign="center center" *ngIf="!weather.shortName && !processing">
+        <mat-card>
+            <mat-card-title>
+                <p>Upss!!</p>
+            </mat-card-title>
+            <mat-card-subtitle>
+                <p>
+                    We do not found weathers based on your filters, try again.
+                </p>
+            </mat-card-subtitle>
+            <img class="img-center" mat-card-md-image src="assets/images/looking-for.jpg"
+                alt="looking for - from pixabay.com">
+        </mat-card>
+    </div>
+
+    <div fxLayout="row wrap" fxLayoutGap="1%" fxLayoutAlign="center center" *ngIf="weather.shortName">
+        <mat-card class="weather-card">
+            <mat-card-header>
+                <div mat-card-avatar class="header-image" [ngStyle]="{'background-image': getIconUrl()}"></div>
+                <mat-card-title>{{weather.longName}} - {{weather.shortName}}</mat-card-title>
+                <mat-card-subtitle>{{weather.description}}</mat-card-subtitle>
+            </mat-card-header>
+
+            <!-- <img mat-card-image [src]="weather.icon" > -->
+            <mat-card-content>
+                <p>
+                    Search time: <strong>{{weather.searchTimeDate}}</strong>
+                </p>
+                <p>
+                    Clouds: <strong>{{weather.clouds}}%</strong>
+                </p>
+                <p>
+                    Temperature: <strong>{{weather.temp}} °</strong>
+                </p>
+                <p>
+                    Wind speed: <strong>{{weather.windSpeed}} m/s</strong>
+                </p>
+
+
+            </mat-card-content>
+            <mat-card-actions fxLayoutAlign="center center">
+                <a mat-stroked-button
+                    href="https://www.google.com/maps/search/?api=1&query=Google&query_place_id={{weather.placeId}}"
+                    target="_blank">open map</a>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>
